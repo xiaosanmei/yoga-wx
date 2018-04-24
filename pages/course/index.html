@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src='../../api/ajax.js'></script>
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + 'px';
+    </script>
+</head>
+
+<body>
+    <div id="app">
+    <div class='top'>
+        <span class='text'>约私教</span>
+        <span class='text1'>楠一瑜伽</span>
+    </div>
+    <div class='bigDate'>
+    <div class='date' v-for='day in weekList' @click="changeDate(day)">
+        <span class='row'>
+            <div>{{day.date}}</div>
+            <div>{{day.week}}</div>
+        </span>
+    </div>
+</div>
+    <div class='content'  v-for='course in courseList'>
+        <span class='content-row left'>
+            <img class='img' />
+        </span>
+        <span class='content-row center'>
+            <div>课程名称:{{course.lesson_name}}</div>
+            <div>课程难度:{{getLevelStar(course.lesson_level)}}</div>
+            <div>教练姓名:{{course.trainer_name}}</div>
+            <div>上课时间:{{course.start_time}}-{{course.end_time}}</div>
+        </span>
+        <span class='content-row right'>
+            <div class='text' @click='appoint(course)'>预约</div>
+        </span>
+    </div>
+
+    <div class='bottom'>
+            <button class='button' @click='venue'>场馆</button>
+            <button class='button' @click='course'>约课</button>
+            <button class='button' @click='contractedCourses'>已约</button>
+            <button class='button'>我的</button>
+     </div>
+</div>
+
+
+
+
+    <script>
+          
+        new Vue({
+            el:'#app',
+            data:{
+                courseList:[],
+                visible:false,
+                weekList:[],
+                lesson_date:'',
+                weekDict: {
+                    '0' : '周天',
+                    '1' : '周一',
+                    '2' : '周二',
+                    '3' : '周三',
+                    '4' : '周四',
+                    '5' : '周五',
+                    '6' : '周六',
+                },
+            },
+            mounted(){
+             
+                this.lesson_date= this.getDate();
+               
+               
+    
+                this.getCourseList();
+                this.getWeekList()
+            },
+            methods:{
+                getCourseList(){
+                    let param={lesson_date:this.lesson_date};
+                    ajax('post','listAppointLesson',function(res){
+                        if(res.code==0){
+                            this.courseList=res.data.list;
+                        }
+                    }.bind(this),param);
+                },
+                getWeekList(){
+                    let d = new Date();
+                    let arr=[];
+                    for(let i=0;i<7;i++){
+                        let obj=this.getDateObject(d,i);
+                        arr.push(obj);
+                    }
+                    this.weekList = arr;
+                },
+                
+                getDateObject(d,i){
+                        let newDate = new Date(d.getFullYear() , d.getMonth(), d.getDate() + i);
+                        let month = d.getMonth() + 1;
+                        month=month<10?('0'+month):month;
+                        let day=newDate.getDate()<10?('0'+newDate.getDate()):newDate.getDate();
+                        let date=month+'-'+day;
+                        let week=this.weekDict[newDate.getDay()];
+                        let lesson_date=d.getFullYear()+'-'+date;
+                        return {date:date,week:week,lesson_date:lesson_date};
+
+                },
+                
+                getDate(){
+                    let d = new Date();
+                    let newDate = new Date(d.getFullYear() , d.getMonth(), d.getDate() );
+                    let month = d.getMonth() + 1;
+                        month=month<10?('0'+month):month;
+                    let day=newDate.getDate()<10?('0'+newDate.getDate()):newDate.getDate();
+                    let date=d.getFullYear()+'-'+month+'-'+day;
+                   return date;
+                },
+              
+                appoint(course){
+                    console.log(course)
+                    localStorage.setItem('course',JSON.stringify(course));
+                    location.href = '../introduction/index.html'; 
+                },
+                changeDate(day){
+                    this.lesson_date=day.lesson_date;
+                    this.getCourseList();
+                },
+                getLevelStar(course){
+                switch(course){
+                    case 1:return '★';
+                    case 2:return '★★';
+                    case 3:return '★★★';
+                    case 4:return '★★★★';
+                    case 5:return '★★★★★';
+                }
+
+            },
+                groupClass(){
+                   
+                },
+             
+
+            venue(){
+                location.href = '../login/index.html'; 
+            },
+            course(){
+                location.href = 'index.html'; 
+            },
+            contractedCourses(){
+                location.href = '../contractedCourses/index.html'; 
+            }
+            }
+           
+        })
+      
+
+    </script>
+</body>
+
+</html>

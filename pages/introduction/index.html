@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src='../../api/ajax.js'></script>
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + 'px';
+    </script>
+
+</head>
+
+<body>
+    <div id='app'>
+        <div>
+            <div class='top'>
+                <span class='left'>
+                    <img class='img' />
+                    <div>{{course.trainer_name}}</div>
+                </span>
+                <span class='center'>
+                    <div class='row'>
+                        <span>{{course.lesson_name}}</span>
+                        <span class='ke'>团课</span>
+                    </div>
+                    <div class='row'>
+                        <span>难度：{{course.lesson_level}}</span>
+                    </div>
+                    <div class='row'>
+                        <span>日期：{{course.lesson_date}}</span>
+                    </div>
+                    <div class='row'>
+                        <span>时间：{{course.start_time}}-{{course.end_time}}（60分钟）</span>
+                    </div>
+                    <div class='row'>
+                        <span>场馆：南一瑜伽</span>
+                    </div>
+                    <div class='row'>
+                        <span>教室：{{course.classroom_name}}</span>
+                    </div>
+                    <div class='row'>
+                        <span>还可以预约2人</span>
+                    </div>
+                </span>
+                <span class='right'>分享给好友</span>
+            </div>
+            <div class='tip'>
+                <div class='title'>课程简介</div>
+                <div class='text'>长期坚持肩颈理疗瑜伽的话还能改善头晕、头痛、气血不足、失眠等症状，还能使你的面色变得红润、整个人感觉非常有精气神.肩颈理疗瑜伽适合任何人练习，特别适合家庭主妇、上班族、司机等这些人，对于患有颈椎炎、肩周炎的人来说，肩颈理疗瑜伽就能起到治疗的作用。</div>
+            </div>
+        </div>
+        <div>
+            <div class='top tip'>
+                <span class='text'>会员卡</span>
+                <select class='select'>
+                    <option>常温半年卡20171111001</option>
+                </select>
+            </div>
+            <div class='top'>
+                <div class='text'>预约人数</div>
+            </div>
+            <div>
+                <textarea placeholder="添加预约备注信息，非必填" class='textarea'></textarea>
+            </div>
+        </div>
+        <div class='tip  a'>
+            <div class='title'>预约须知</div>
+            <div class='title'>1.本课程需早于考克前0分钟预约</div>
+            <div class='title'>2.预约成功后自动扣除相应费用</div>
+            <div class='title'>3.开课前120分钟不可以取消</div>
+            <div class='title'>4.取消预约不扣除费用</div>
+            <div class='title'>5.该课程满3人开课，如预约人数不足会在开课前60分钟自动取消预约</div>
+        </div>
+        <div class='bottom'>
+            <button class='button' @click='submit'>确认预约</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            course:{},
+        },
+        mounted() {
+            let detail = localStorage.getItem('course');
+            this.course = JSON.parse(detail);
+        console.log(this.course)
+        },
+        methods: {
+            submit(){
+                let param={appoint_lesson_id:this.course.id};
+                console.log(param)
+                ajax('post','appointLesson',function(res){
+                    if(res.code==0){
+                        location.href = '../contractedCourses/index.html'; 
+                    }
+                }.bind(this),param);
+            },
+        }
+    })
+</script>
+
+</html>

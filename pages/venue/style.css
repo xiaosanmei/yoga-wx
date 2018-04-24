@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+    background: #f5f5f5;
+    font-size:.3rem;
+}
+.text-title{
+    color: rgb(165, 163, 163);
+    padding: 10px 15px;
+}
+.texe-content{
+  background: #fff;
+  margin:0 15px;
+  border-radius:8px;
+  padding: 10px 15px;
+}
+.bottom {
+    background-color: #fff;
+    margin-top: 15px;
+    font-size: 0;
+    padding:10px 0;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+
+}
+.bottom .button{
+    border: none;
+    color: #ccc;
+    text-align: center;
+    background: none;
+    width: 25%;
+    outline: none;
+ 
+
+}
+.bottom .button:hover{
+    color: rgb(13, 13, 252);
+}
+

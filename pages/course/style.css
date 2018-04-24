@@ -1,0 +1,99 @@
+body{
+    margin: 0;
+    background: #f5f5f5;
+    font-size:.3rem;
+}
+.top{
+    background: rgb(39, 182, 175);
+    padding:10px 15px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+.top .text{
+    border: 1px solid #fff;
+    padding:2px 10px;
+    border-radius: 8px;
+    color: #fff;
+    font-size:.23rem;
+  
+}
+.top .text1{
+    color: #fff;
+   padding-left: 76px;
+}
+.date .row{
+    display: inline-block;
+    width: 45px;    
+    font-size:.3rem;
+    background-color: #fff;
+    padding:5px 0;
+    margin: 10px 4px;
+}
+.bigDate{
+    text-align: center;
+}
+.date{
+font-size: 0;
+margin-top: 40px;
+display: inline-block;
+}
+.content{
+    font-size: 0;
+    background: #fff;
+    border-bottom: 0.01rem solid#f5f5f5;
+}
+.content .content-row{
+    display: inline-block;
+    vertical-align: middle;
+    font-size:.25rem;
+    padding:10px 15px;
+}
+.content .img{
+    width: 60px;
+    height:60px;
+}
+.content .content-row.right{
+   text-align: center;
+    width: 18%;
+    font-size:.25rem;
+  
+}
+.content  .text{
+    background-color: rgb(39, 182, 175);
+    padding:3px 15px;
+    border-radius: 8px;
+    color: #fff;
+}
+.content .content-row.left{
+    text-align: left;
+    width: 10%;
+}
+.content .content-row.center{
+    width: 48%;
+} 
+.bottom {
+    background-color: #fff;
+    margin-top: 15px;
+    font-size: 0;
+    padding:10px 0;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+
+}
+.bottom .button{
+    border: none;
+    color: #ccc;
+    text-align: center;
+    background: none;
+    width: 25%;
+    outline: none;
+ 
+
+}
+.bottom .button:hover{
+    color: rgb(13, 13, 252);
+}
