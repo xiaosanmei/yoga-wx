@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +14,15 @@
 
 <body>
     <div id='app'>
-        <div class='title'>
-            <img src='../../static/img/tou.jpg' class='tou'/>
-            <span class='text'>瑜伽</span>
-            <button class='button'>+关注</button>
-        </div>
-        <div>
-            <img src='../../static/img/login.jpg' class='logImg'/>
+        <div class='topTitle'>
+            <div class='title'>
+                <img src='../../static/img/tou.jpg' class='tou' />
+                <span class='text'>楠一瑜伽</span>
+                <button class='button'>+关注</button>
+            </div>
+            <div>
+                <img src='../../static/img/login.jpg' class='logImg' />
+            </div>
         </div>
         <div class='box'>
             <div>
@@ -83,32 +86,32 @@
         <div class='texe-content xx'>联系人：杨楠 0288785421 1444542512 场馆地址：四川省成都市郫县天目路77号
         </div>
         <div class='bottom'>
-                <button class='button' @click='venue'>场馆</button>
-                <button class='button' @click='course'>约课</button>
-                <button class='button' @click='contractedCourses'>已约</button>
-                <button class='button'>我的</button>
-         </div>
+            <button class='button' @click='venue'>场馆</button>
+            <button class='button' @click='course'>约课</button>
+            <button class='button' @click='contractedCourses'>已约</button>
+            <button class='button'>我的</button>
+        </div>
     </div>
 
     <script>
         new Vue({
-            el:"#app",
-            data:{
+            el: "#app",
+            data: {
 
             },
-            mounted(){
+            mounted() {
 
             },
-            methods:{
-                venue(){
-                location.href = 'index.html'; 
-            },
-            course(){
-                location.href = '../course/index.html'; 
-            },
-            contractedCourses(){
-                location.href = '../contractedCourses/index.html'; 
-            }
+            methods: {
+                venue() {
+                    location.href = 'index.html';
+                },
+                course() {
+                    location.href = '../course/index.html';
+                },
+                contractedCourses() {
+                    location.href = '../contractedCourses/index.html';
+                }
             }
         })
 
