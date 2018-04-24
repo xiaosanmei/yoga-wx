@@ -8,7 +8,7 @@ body{
     background-size: 360px 423px;
 }
 .topTitle{
-    text-align: center;
+    width: 100%;
 }
 .test{
     width: 50px;
